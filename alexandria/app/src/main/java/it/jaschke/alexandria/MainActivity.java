@@ -80,9 +80,11 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
         }
 
+        // Change by vhly
+        // I think when fragment back, In drawer show exit directly
         fragmentManager.beginTransaction()
                 .replace(R.id.container, nextFragment)
-                .addToBackStack((String) title)
+//                .addToBackStack((String) title)
                 .commit();
     }
 
