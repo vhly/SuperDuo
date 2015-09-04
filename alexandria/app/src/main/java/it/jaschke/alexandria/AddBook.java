@@ -27,6 +27,10 @@ import it.jaschke.alexandria.services.DownloadImage;
 
 public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final String TAG = "INTENT_TO_SCAN_ACTIVITY";
+
+    /**
+     * ISBN input EditText
+     */
     private EditText ean;
     private final int LOADER_ID = 1;
     private View rootView;
@@ -48,6 +52,11 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         if(ean!=null) {
             outState.putString(EAN_CONTENT, ean.getText().toString());
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -102,6 +111,8 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
+
+                //////////////////////////////
 
             }
         });

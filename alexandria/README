@@ -1,0 +1,32 @@
+# SuperDuo alexandria project
+
+Info:
+
+1. When application launched, Slide menu will show and Input Method will show in same time;
+    I think this not a good feel, I will change it hide InputMethod window.
+
+2. Application enter point is MainActivity
+
+3. MainActivity uses drawer navigation.
+
+4. Fragments:
+
+    1) ListOfBooks  list books
+    2) AddBook      add book or scan barcode
+    3) About        about
+    4) BookDetail   show book detail
+    5) NavigationDrawerFragment   Android Studio default Drawer code.
+
+5. Data support
+
+    1) BookProvider       Provide book data query, insert support.
+    2) DbHelper           SQLite database open support and tables define.
+    3) AlexandriaContract BookProvider constants define.
+
+6. Book support
+
+    1) BookService Fetch book information with ISBN.
+
+ChangeLog:
+
+1. When MainActivity launched, InputMethod not show, if in list search page
