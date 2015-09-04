@@ -57,7 +57,16 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 998){
+            if(resultCode == Activity.RESULT_OK){
+                if (data != null) {
+                    String stringExtra = data.getStringExtra(Intents.Scan.RESULT);
+
+                    ean.setText(stringExtra);
+
+                }
+            }
+        }
     }
 
     @Override
@@ -117,7 +126,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
                 // ZXing Activity
 
                 Intent intent = new Intent(Intents.Scan.ACTION);
-//                intent.putExtra(Intents.Scan.MODE, Intents.Scan.ONE_D_MODE);
+                intent.putExtra(Intents.Scan.MODE, Intents.Scan.ONE_D_MODE);
                 startActivityForResult(intent, 998);
 
             }
