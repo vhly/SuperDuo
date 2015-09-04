@@ -188,15 +188,24 @@ public class myFetchService extends IntentService
                 League = match_data.getJSONObject(LINKS).getJSONObject(SOCCER_SEASON).
                         getString("href");
                 League = League.replace(SEASON_LINK,"");
+
+                Log.d(LOG_TAG, "League " + League);
+
                 //This if statement controls which leagues we're interested in the data from.
                 //add leagues here in order to have them be added to the DB.
                 // If you are finding no data in the app, check that this contains all the leagues.
                 // If it doesn't, that can cause an empty DB, bypassing the dummy data routine.
-                if(     League.equals(PREMIER_LEAGUE)      ||
-                        League.equals(SERIE_A)             ||
-                        League.equals(BUNDESLIGA1)         ||
-                        League.equals(BUNDESLIGA2)         ||
-                        League.equals(PRIMERA_DIVISION)     )
+//                if(     League.equals(PREMIER_LEAGUE)      ||
+//                        League.equals(SERIE_A)             ||
+//                        League.equals(BUNDESLIGA1)         ||
+//                        League.equals(BUNDESLIGA2)         ||
+//                        League.equals(Bundesliga3)         ||
+//                        League.equals(EREDIVISIE)         ||
+//                        League.equals(LIGUE1)         ||
+//                        League.equals(LIGUE2)         ||
+//                        League.equals(SEGUNDA_DIVISION)         ||
+//                        League.equals(PRIMERA_LIGA)         ||
+//                        League.equals(PRIMERA_DIVISION)     )
                 {
                     match_id = match_data.getJSONObject(LINKS).getJSONObject(SELF).
                             getString("href");
