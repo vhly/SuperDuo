@@ -154,7 +154,8 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         if (prefs.getBoolean(PreferencesActivity.KEY_DISABLE_AUTO_ORIENTATION, true)) {
-            setRequestedOrientation(getCurrentOrientation());
+//            setRequestedOrientation(getCurrentOrientation());
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         } else {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
         }
@@ -380,7 +381,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
                 savedResultToShow = result;
             }
             if (savedResultToShow != null) {
-                Message message = Message.obtain(handler, R.id.decode_succeeded, savedResultToShow);
+                Message message = Message.obtain(handler, Constants.WHAT_decode_succeeded, savedResultToShow);
                 handler.sendMessage(message);
             }
             savedResultToShow = null;
@@ -653,7 +654,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
                     }
                 }
             }
-            sendReplyMessage(R.id.return_scan_result, intent, resultDurationMS);
+            sendReplyMessage(Constants.WHAT_return_scan_result, intent, resultDurationMS);
 
         } else if (source == IntentSource.PRODUCT_SEARCH_LINK) {
 
@@ -661,14 +662,14 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
             // TLD as the scan URL.
             int end = sourceUrl.lastIndexOf("/scan");
             String replyURL = sourceUrl.substring(0, end) + "?q=" + resultHandler.getDisplayContents() + "&source=zxing";
-            sendReplyMessage(R.id.launch_product_query, replyURL, resultDurationMS);
+            sendReplyMessage(Constants.WHAT_launch_product_query, replyURL, resultDurationMS);
 
         } else if (source == IntentSource.ZXING_LINK) {
 
             if (scanFromWebPageManager != null && scanFromWebPageManager.isScanFromWebPage()) {
                 String replyURL = scanFromWebPageManager.buildReplyURL(rawResult, resultHandler);
                 scanFromWebPageManager = null;
-                sendReplyMessage(R.id.launch_product_query, replyURL, resultDurationMS);
+                sendReplyMessage(Constants.WHAT_launch_product_query, replyURL, resultDurationMS);
             }
 
         }
@@ -722,7 +723,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
 
     public void restartPreviewAfterDelay(long delayMS) {
         if (handler != null) {
-            handler.sendEmptyMessageDelayed(R.id.restart_preview, delayMS);
+            handler.sendEmptyMessageDelayed(Constants.WHAT_restart_preview, delayMS);
         }
         resetStatusView();
     }

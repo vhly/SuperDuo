@@ -62,7 +62,7 @@ final class HistoryItemAdapter extends ArrayAdapter<HistoryItem> {
       detail = resources.getString(R.string.history_empty_detail);
     }
 
-    ((TextView) layout.findViewById(R.id.history_title)).setText(title);    
+    ((TextView) layout.findViewById(R.id.history_title)).setText(title);
     ((TextView) layout.findViewById(R.id.history_detail)).setText(detail);
 
     return layout;

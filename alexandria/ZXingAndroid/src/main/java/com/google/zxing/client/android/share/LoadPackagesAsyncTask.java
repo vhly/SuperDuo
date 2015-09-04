@@ -96,7 +96,7 @@ final class LoadPackagesAsyncTask extends AsyncTask<Object,Object,List<AppInfo>>
   protected void onPostExecute(final List<AppInfo> results) {    
     ListAdapter listAdapter = new ArrayAdapter<AppInfo>(activity, 
                                                         R.layout.app_picker_list_item, 
-                                                        R.id.app_picker_list_item_label, 
+                                                        R.id.app_picker_list_item_label,
                                                         results) {
       @Override
       public View getView(int position, View convertView, ViewGroup parent) {

@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.zxing.client.android.Intents;
 import it.jaschke.alexandria.data.AlexandriaContract;
 import it.jaschke.alexandria.services.BookService;
 import it.jaschke.alexandria.services.DownloadImage;
@@ -113,6 +114,11 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
                 toast.show();
 
                 //////////////////////////////
+                // ZXing Activity
+
+                Intent intent = new Intent(Intents.Scan.ACTION);
+//                intent.putExtra(Intents.Scan.MODE, Intents.Scan.ONE_D_MODE);
+                startActivityForResult(intent, 998);
 
             }
         });
