@@ -51,8 +51,11 @@ public class PagerFragment extends Fragment {
             return NUM_PAGES;
         }
 
+        private SimpleDateFormat dayFormat;
+
         public myPageAdapter(FragmentManager fm) {
             super(fm);
+            dayFormat = new SimpleDateFormat("EEEE");
         }
 
         // Returns the page title for the top indicator
@@ -69,19 +72,23 @@ public class PagerFragment extends Fragment {
             t.setToNow();
             int julianDay = Time.getJulianDay(dateInMillis, t.gmtoff);
             int currentJulianDay = Time.getJulianDay(System.currentTimeMillis(), t.gmtoff);
+
+            String ret = "";
+
             if (julianDay == currentJulianDay) {
-                return context.getString(R.string.today);
+                ret =  context.getString(R.string.today);
             } else if (julianDay == currentJulianDay + 1) {
-                return context.getString(R.string.tomorrow);
+                ret = context.getString(R.string.tomorrow);
             } else if (julianDay == currentJulianDay - 1) {
-                return context.getString(R.string.yesterday);
+                ret = context.getString(R.string.yesterday);
             } else {
                 Time time = new Time();
                 time.setToNow();
                 // Otherwise, the format is just the day of the week (e.g "Wednesday".
-                SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE");
-                return dayFormat.format(dateInMillis);
+
+                ret = dayFormat.format(dateInMillis);
             }
+            return ret;
         }
     }
 }
