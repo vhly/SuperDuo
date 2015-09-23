@@ -1,12 +1,15 @@
 package barqsoft.footballscores.appwidget;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.widget.RemoteViews;
 import barqsoft.footballscores.DatabaseContract;
+import barqsoft.footballscores.MainActivity;
 import barqsoft.footballscores.R;
 
 import java.text.SimpleDateFormat;
@@ -53,6 +56,12 @@ public class MatchAppWidget extends AppWidgetProvider {
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.match_app_widget);
         views.setTextViewText(R.id.appwidget_text, widgetText);
+
+        Intent intent = new Intent(context, MainActivity.class);
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 998, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        views.setOnClickPendingIntent(R.id.appwidget_text, pendingIntent);
 
         ContentResolver resolver = context.getContentResolver();
 
