@@ -41,7 +41,7 @@
                     />
         </activity>
 
-        <service android:name=".service.MyFetchService"/>
+        <service android:name=".service.MMyFetchService"/>
 
         <!-- App Widget support -->
 

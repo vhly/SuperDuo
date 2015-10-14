@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import barqsoft.footballscores.service.MyFetchService;
+import barqsoft.footballscores.service.MMyFetchService;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -27,7 +27,7 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
     }
 
     private void update_scores() {
-        Intent service_start = new Intent(getActivity(), MyFetchService.class);
+        Intent service_start = new Intent(getActivity(), MMyFetchService.class);
         getActivity().startService(service_start);
     }
 
