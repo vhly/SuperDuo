@@ -57,6 +57,7 @@ public class MatchAppWidget extends AppWidgetProvider {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.match_app_widget);
         views.setTextViewText(R.id.appwidget_text, widgetText);
 
+
         Intent intent = new Intent(context, MainActivity.class);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 998, intent, PendingIntent.FLAG_UPDATE_CURRENT);

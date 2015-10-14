@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Patterns;
@@ -168,7 +169,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
     }
 
     @Override
-    public android.support.v4.content.Loader<Cursor> onCreateLoader(int id, Bundle args) {
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         Editable text = ean.getText();
         int length = text.length();
 
@@ -190,7 +191,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
     }
 
     @Override
-    public void onLoadFinished(android.support.v4.content.Loader<Cursor> loader, Cursor data) {
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         if (!data.moveToFirst()) {
             return;
         }
@@ -201,10 +202,22 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         String bookSubTitle = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.SUBTITLE));
         ((TextView) rootView.findViewById(R.id.bookSubTitle)).setText(bookSubTitle);
 
+        // Sometime authors is null
+        // so need check
         String authors = data.getString(data.getColumnIndex(AlexandriaContract.AuthorEntry.AUTHOR));
-        String[] authorsArr = authors.split(",");
-        ((TextView) rootView.findViewById(R.id.authors)).setLines(authorsArr.length);
-        ((TextView) rootView.findViewById(R.id.authors)).setText(authors.replace(",","\n"));
+
+        TextView txtAuthors = (TextView) rootView.findViewById(R.id.authors);
+
+        if (authors != null && authors.length() > 0) {
+
+            String[] authorsArr = authors.split(",");
+
+            txtAuthors.setLines(authorsArr.length);
+            txtAuthors.setText(authors.replace(",", "\n"));
+        }else{
+            txtAuthors.setText("No author");
+        }
+
         String imgUrl = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.IMAGE_URL));
         if(Patterns.WEB_URL.matcher(imgUrl).matches()){
             new DownloadImage((ImageView) rootView.findViewById(R.id.bookCover)).execute(imgUrl);
@@ -219,7 +232,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
     }
 
     @Override
-    public void onLoaderReset(android.support.v4.content.Loader<Cursor> loader) {
+    public void onLoaderReset(Loader<Cursor> loader) {
 
     }
 
