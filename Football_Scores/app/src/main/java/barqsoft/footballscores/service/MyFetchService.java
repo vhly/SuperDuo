@@ -26,10 +26,10 @@ import java.util.Vector;
 /**
  * Created by yehya khaled on 3/2/2015.
  */
-public class MMyFetchService extends IntentService {
+public class MyFetchService extends IntentService {
     public static final String LOG_TAG = "MyFetchService";
 
-    public MMyFetchService() {
+    public MyFetchService() {
         super("MyFetchService");
     }
 
