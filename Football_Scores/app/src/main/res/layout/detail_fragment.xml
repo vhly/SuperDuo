@@ -3,6 +3,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              style="@style/AppTheme.Mirror.LayoutDirection"
         >
 
     <LinearLayout
@@ -12,6 +13,7 @@
             >
 
         <TextView
+                style="@style/AppTheme.Mirror.TextDirection"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -19,10 +21,12 @@
                 android:text="@string/test_text"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/League"
+                android:contentDescription="League"
                 android:id="@+id/league_textview"
                 />
 
         <TextView
+                style="@style/AppTheme.Mirror.TextDirection"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -30,6 +34,7 @@
                 android:text="@string/test_text"
                 android:textSize="@dimen/League"
                 android:textColor="@android:color/black"
+                android:contentDescription="Match Day"
                 android:id="@+id/matchday_textview"
                 />
     </LinearLayout>
@@ -41,15 +46,16 @@
             >
 
         <Button
+                style="@style/AppTheme.Mirror.ShareButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="@string/share_text"
                 android:id="@+id/share_button"
-                android:drawableLeft="@android:drawable/ic_menu_share"
                 android:paddingLeft="120dp"
                 android:paddingRight="120dp"
+                android:contentDescription="Share"
                 />
     </FrameLayout>
 

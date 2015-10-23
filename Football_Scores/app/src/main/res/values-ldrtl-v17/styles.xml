@@ -7,20 +7,17 @@
 
     <!-- define ui style for rtl check -->
 
-    <style name="AppTheme.Mirror">
-
-    </style>
 
     <style name="AppTheme.Mirror.LayoutDirection">
-
+        <item name="android:layoutDirection">rtl</item>
     </style>
 
     <style name="AppTheme.Mirror.TextDirection">
-
+        <item name="android:textDirection">rtl</item>
     </style>
 
     <style name="AppTheme.Mirror.ShareButton">
-        <item name="android:drawableLeft">@android:drawable/ic_menu_share</item>
+        <item name="android:drawableStart">@android:drawable/ic_menu_share</item>
     </style>
 
 </resources>

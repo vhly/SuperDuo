@@ -3,6 +3,7 @@
                 android:layout_height="match_parent"
                 android:padding="@dimen/widget_margin"
                 android:background="#09C"
+                style="@style/AppTheme.Mirror.LayoutDirection"
         >
 
 
@@ -11,6 +12,7 @@
             android:id="@+id/appwidget_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            style="@style/AppTheme.Mirror.LayoutDirection"
             />
 
     <TextView
@@ -26,6 +28,7 @@
             android:layout_margin="8dp"
             android:contentDescription="@string/appwidget_text"
             android:background="#09C"
+            style="@style/AppTheme.Mirror.TextDirection"
             />
 
 </RelativeLayout>
