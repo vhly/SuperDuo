@@ -16,6 +16,8 @@ import barqsoft.footballscores.R;
 import barqsoft.footballscores.model.MatchInfo;
 import barqsoft.footballscores.provider.DatabaseContract;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -24,6 +26,9 @@ import java.util.Locale;
  * Widget Service for ListView adapter
  */
 public class MyWidgetService extends RemoteViewsService {
+
+    private static final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
     public MyWidgetService() {
     }
 
@@ -61,7 +66,7 @@ public class MyWidgetService extends RemoteViewsService {
                     uri,
                     null,
                     null,
-                    new String[]{"2015-11-05"},
+                    new String[]{format.format(new Date())},
                     null
             );
 
@@ -148,7 +153,7 @@ public class MyWidgetService extends RemoteViewsService {
 
 
             ret.setOnClickFillInIntent(
-                    R.id.item_match_widget_score,
+                    R.id.item_match_widget_container,
                     intent
             );
 
