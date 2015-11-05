@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import barqsoft.footballscores.fragment.PagerFragment;
 
 public class MainActivity extends ActionBarActivity {
     public static int selected_match_id;

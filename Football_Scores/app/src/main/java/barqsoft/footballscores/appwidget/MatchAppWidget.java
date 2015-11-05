@@ -8,7 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.widget.RemoteViews;
-import barqsoft.footballscores.DatabaseContract;
+import barqsoft.footballscores.provider.DatabaseContract;
 import barqsoft.footballscores.MainActivity;
 import barqsoft.footballscores.R;
 

@@ -1,4 +1,4 @@
-package barqsoft.footballscores;
+package barqsoft.footballscores.fragment;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -12,6 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import barqsoft.footballscores.provider.DatabaseContract;
+import barqsoft.footballscores.MainActivity;
+import barqsoft.footballscores.R;
 import barqsoft.footballscores.adapter.ScoresAdapter;
 import barqsoft.footballscores.adapter.ViewHolder;
 import barqsoft.footballscores.service.MyFetchService;

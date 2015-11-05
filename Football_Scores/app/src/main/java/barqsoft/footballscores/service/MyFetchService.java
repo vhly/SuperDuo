@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
-import barqsoft.footballscores.DatabaseContract;
+import barqsoft.footballscores.provider.DatabaseContract;
 import barqsoft.footballscores.R;
 import org.json.JSONArray;
 import org.json.JSONException;

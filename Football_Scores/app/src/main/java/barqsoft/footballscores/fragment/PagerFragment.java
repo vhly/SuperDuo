@@ -1,4 +1,4 @@
-package barqsoft.footballscores;
+package barqsoft.footballscores.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,6 +11,9 @@ import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import barqsoft.footballscores.MainActivity;
+import barqsoft.footballscores.R;
+import barqsoft.footballscores.fragment.MainScreenFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
