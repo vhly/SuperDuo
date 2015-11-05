@@ -19,8 +19,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
 import com.google.zxing.client.android.Intents;
 import it.jaschke.alexandria.data.AlexandriaContract;
 import it.jaschke.alexandria.services.BookService;
@@ -36,7 +34,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
     private EditText ean;
     private final int LOADER_ID = 1;
     private View rootView;
-    private final String EAN_CONTENT="eanContent";
+    private final String EAN_CONTENT = "eanContent";
     private static final String SCAN_FORMAT = "scanFormat";
     private static final String SCAN_CONTENTS = "scanContents";
 
@@ -44,27 +42,24 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
     private String mScanContents = "Contents:";
 
 
-
-    public AddBook(){
+    public AddBook() {
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        if(ean!=null) {
+        if (ean != null) {
             outState.putString(EAN_CONTENT, ean.getText().toString());
         }
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == 998){
-            if(resultCode == Activity.RESULT_OK){
+        if (requestCode == 998) {
+            if (resultCode == Activity.RESULT_OK) {
                 if (data != null) {
                     String stringExtra = data.getStringExtra(Intents.Scan.RESULT);
-
                     ean.setText(stringExtra);
-
                 }
             }
         }
@@ -89,9 +84,9 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
             @Override
             public void afterTextChanged(Editable s) {
-                String ean =s.toString();
+                String ean = s.toString();
 
-                if(ean.length() != 13) {
+                if (ean.length() != 13) {
                     //catch isbn10 numbers
                     if (ean.length() == 10 && !ean.startsWith("978")) {
                         ean = "978" + ean;
@@ -101,13 +96,14 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 //                        return;
 //                    }
                 }
-
-                //Once we have an ISBN, start a book intent
-                Intent bookIntent = new Intent(getActivity(), BookService.class);
-                bookIntent.putExtra(BookService.EAN, ean);
-                bookIntent.setAction(BookService.FETCH_BOOK);
-                getActivity().startService(bookIntent);
-                AddBook.this.restartLoader();
+                if(ean.length() == 13) {
+                    //Once we have an ISBN, start a book intent
+                    Intent bookIntent = new Intent(getActivity(), BookService.class);
+                    bookIntent.putExtra(BookService.EAN, ean);
+                    bookIntent.setAction(BookService.FETCH_BOOK);
+                    getActivity().startService(bookIntent);
+                    restartLoader();
+                }
             }
         });
 
@@ -156,7 +152,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
             }
         });
 
-        if(savedInstanceState!=null){
+        if (savedInstanceState != null) {
             ean.setText(savedInstanceState.getString(EAN_CONTENT));
             ean.setHint("");
         }
@@ -164,8 +160,18 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         return rootView;
     }
 
-    private void restartLoader(){
-        getLoaderManager().restartLoader(LOADER_ID, null, this);
+    private void restartLoader() {
+        try {
+            LoaderManager loaderManager = getLoaderManager();
+            Loader<Object> loader = loaderManager.getLoader(LOADER_ID);
+            if (loader != null) {
+                loaderManager.restartLoader(LOADER_ID, null, this);
+            } else {
+                loaderManager.initLoader(LOADER_ID, null, this);
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     @Override
@@ -173,12 +179,12 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         Editable text = ean.getText();
         int length = text.length();
 
-        if(length ==0){
+        if (length == 0) {
             return null;
         }
-        String eanStr= text.toString();
-        if(eanStr.length()==10 && !eanStr.startsWith("978")){
-            eanStr="978"+eanStr;
+        String eanStr = text.toString();
+        if (eanStr.length() == 10 && !eanStr.startsWith("978")) {
+            eanStr = "978" + eanStr;
         }
         return new CursorLoader(
                 getActivity(),
@@ -214,12 +220,12 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
             txtAuthors.setLines(authorsArr.length);
             txtAuthors.setText(authors.replace(",", "\n"));
-        }else{
+        } else {
             txtAuthors.setText("No author");
         }
 
         String imgUrl = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.IMAGE_URL));
-        if(Patterns.WEB_URL.matcher(imgUrl).matches()){
+        if (Patterns.WEB_URL.matcher(imgUrl).matches()) {
             new DownloadImage((ImageView) rootView.findViewById(R.id.bookCover)).execute(imgUrl);
             rootView.findViewById(R.id.bookCover).setVisibility(View.VISIBLE);
         }
@@ -236,7 +242,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
     }
 
-    private void clearFields(){
+    private void clearFields() {
         ((TextView) rootView.findViewById(R.id.bookTitle)).setText("");
         ((TextView) rootView.findViewById(R.id.bookSubTitle)).setText("");
         ((TextView) rootView.findViewById(R.id.authors)).setText("");
