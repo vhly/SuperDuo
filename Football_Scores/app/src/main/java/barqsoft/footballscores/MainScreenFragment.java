@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import barqsoft.footballscores.adapter.ScoresAdapter;
+import barqsoft.footballscores.adapter.ViewHolder;
 import barqsoft.footballscores.service.MyFetchService;
 
 /**

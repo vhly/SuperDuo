@@ -16,7 +16,7 @@
         <item name="android:textDirection">rtl</item>
     </style>
 
-    <style name="AppTheme.Mirror.ShareButton">
+    <style name="AppTheme.Mirror.ShareButton" parent="AppTheme.Mirror.TextDirection">
         <item name="android:drawableStart">@android:drawable/ic_menu_share</item>
     </style>
 
