@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -84,8 +86,9 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         // I think when fragment back, In drawer show exit directly
         fragmentManager.beginTransaction()
                 .replace(R.id.container, nextFragment)
-//                .addToBackStack((String) title)
+                .addToBackStack((String) title)
                 .commit();
+        restoreActionBar();
     }
 
     public void setTitle(int titleId) {
@@ -96,9 +99,20 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(title);
-        if(getSupportFragmentManager().getBackStackEntryCount()>1) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
+        if(!IS_TABLET){
+            FragmentManager manager = getSupportFragmentManager();
+            int count = manager.getBackStackEntryCount();
+            if(count > 1) {
+                navigationDrawerFragment.setDrawerToggleIndicator(null);
+            }else{
+                Resources resources = getResources();
+                Drawable drawable = resources.getDrawable(R.drawable.ic_drawer);
+                if (navigationDrawerFragment != null) {
+                    navigationDrawerFragment.setDrawerToggleIndicator(drawable);
+                }
+            }
         }
     }
 
@@ -157,7 +171,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 .replace(id, fragment)
                 .addToBackStack("Book Detail")
                 .commit();
-
+        navigationDrawerFragment.setDrawerToggleIndicator(null);
     }
 
     /**

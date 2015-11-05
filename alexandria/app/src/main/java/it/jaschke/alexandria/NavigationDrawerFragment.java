@@ -1,5 +1,6 @@
 package it.jaschke.alexandria;
 
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.support.v7.app.ActionBar;
@@ -176,6 +177,8 @@ public class NavigationDrawerFragment extends Fragment {
             }
         };
 
+        mDrawerToggle.setDrawerIndicatorEnabled(false);
+
         // If the user hasn't 'learned' about the drawer, open it to introduce them to the drawer,
         // per the navigation drawer design guidelines.
         if (!mUserLearnedDrawer && !mFromSavedInstanceState) {
@@ -233,6 +236,17 @@ public class NavigationDrawerFragment extends Fragment {
         super.onConfigurationChanged(newConfig);
         // Forward the new configuration the drawer toggle component.
         mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    public void setDrawerToggleIndicator(Drawable drawable){
+        if (mDrawerToggle != null) {
+            if(drawable != null){
+                mDrawerToggle.setDrawerIndicatorEnabled(true);
+            }else{
+                mDrawerToggle.setDrawerIndicatorEnabled(false);
+            }
+            mDrawerToggle.setHomeAsUpIndicator(drawable);
+        }
     }
 
     @Override
