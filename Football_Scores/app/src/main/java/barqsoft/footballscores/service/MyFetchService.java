@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.util.Log;
 import barqsoft.footballscores.provider.DatabaseContract;
 import barqsoft.footballscores.R;
+import barqsoft.footballscores.utils.MyLog;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -83,7 +84,7 @@ public class MyFetchService extends IntentService {
             }
             JSON_data = buffer.toString();
         } catch (Exception e) {
-            Log.e(LOG_TAG, "Exception here" + e.getMessage());
+            MyLog.e(LOG_TAG, "Exception here" + e.getMessage());
         } finally {
             if (m_connection != null) {
                 m_connection.disconnect();
@@ -92,7 +93,7 @@ public class MyFetchService extends IntentService {
                 try {
                     reader.close();
                 } catch (IOException e) {
-                    Log.e(LOG_TAG, "Error Closing Stream");
+                    MyLog.e(LOG_TAG, "Error Closing Stream");
                 }
             }
         }
@@ -111,10 +112,10 @@ public class MyFetchService extends IntentService {
                 processJSONdata(JSON_data, getApplicationContext(), true);
             } else {
                 //Could not Connect
-                Log.d(LOG_TAG, "Could not connect to server.");
+                MyLog.d(LOG_TAG, "Could not connect to server.");
             }
         } catch (Exception e) {
-            Log.e(LOG_TAG, e.getMessage());
+            MyLog.e(LOG_TAG, e.getMessage());
         }
     }
 
@@ -174,7 +175,7 @@ public class MyFetchService extends IntentService {
                         getString("href");
                 League = League.replace(SEASON_LINK, "");
 
-                Log.d(LOG_TAG, "League " + League);
+                MyLog.d(LOG_TAG, "League " + League);
 
                 //This if statement controls which leagues we're interested in the data from.
                 //add leagues here in order to have them be added to the DB.
@@ -220,8 +221,8 @@ public class MyFetchService extends IntentService {
                             mDate = mformat.format(fragmentdate);
                         }
                     } catch (Exception e) {
-                        Log.d(LOG_TAG, "error here!");
-                        Log.e(LOG_TAG, e.getMessage());
+                        MyLog.d(LOG_TAG, "error here!");
+                        MyLog.e(LOG_TAG, e.getMessage());
                     }
                     Home = match_data.getString(HOME_TEAM);
                     Away = match_data.getString(AWAY_TEAM);
@@ -259,7 +260,7 @@ public class MyFetchService extends IntentService {
 
             //Log.v(LOG_TAG,"Succesfully Inserted : " + String.valueOf(inserted_data));
         } catch (JSONException e) {
-            Log.e(LOG_TAG, e.getMessage());
+            MyLog.e(LOG_TAG, e.getMessage());
         }
 
     }

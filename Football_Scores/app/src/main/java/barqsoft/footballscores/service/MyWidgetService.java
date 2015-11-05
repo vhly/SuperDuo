@@ -15,6 +15,7 @@ import barqsoft.footballscores.MainActivity;
 import barqsoft.footballscores.R;
 import barqsoft.footballscores.model.MatchInfo;
 import barqsoft.footballscores.provider.DatabaseContract;
+import barqsoft.footballscores.utils.MyLog;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -98,7 +99,7 @@ public class MyWidgetService extends RemoteViewsService {
         @Override
         public RemoteViews getViewAt(int position) {
 
-            Log.d("Widget", "getViewAt(" + position + ")");
+            MyLog.d("Widget", "getViewAt(" + position + ")");
 
             RemoteViews ret =
                     new RemoteViews(
@@ -114,7 +115,7 @@ public class MyWidgetService extends RemoteViewsService {
                     String homeName = info.getHomeName();
                     String awayName = info.getAwayName();
 
-                    Log.d("Widget", homeName + " : " + awayName);
+                    MyLog.d("Widget", homeName + " : " + awayName);
 
                     ret.setTextViewText(R.id.item_match_widget_home_name, homeName);
                     ret.setTextViewText(R.id.item_match_widget_away_name, awayName);
@@ -157,7 +158,7 @@ public class MyWidgetService extends RemoteViewsService {
                     intent
             );
 
-            Log.d("Widget", "view ret " + ret);
+            MyLog.d("Widget", "view ret " + ret);
 
             return ret;
         }
