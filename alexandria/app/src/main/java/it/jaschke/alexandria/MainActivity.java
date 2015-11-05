@@ -72,7 +72,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 nextFragment = new ListOfBooks();
                 break;
             case 1:
-                nextFragment = new AddBook();
+                nextFragment = new AddBookFragment();
                 break;
             case 2:
                 nextFragment = new About();
@@ -97,6 +97,9 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(title);
+        if(getSupportFragmentManager().getBackStackEntryCount()>1) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
 
@@ -120,12 +123,16 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        boolean ret = false;
+
         if (id == R.id.action_settings) {
             startActivity(new Intent(this, SettingsActivity.class));
-            return true;
+            ret = true;
+        }else if(id == android.R.id.home){
+            goBack(null);
         }
 
-        return super.onOptionsItemSelected(item);
+        return ret;
     }
 
     @Override
@@ -137,9 +144,9 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     @Override
     public void onItemSelected(String ean) {
         Bundle args = new Bundle();
-        args.putString(BookDetail.EAN_KEY, ean);
+        args.putString(BookDetailFragment.EAN_KEY, ean);
 
-        BookDetail fragment = new BookDetail();
+        BookDetailFragment fragment = new BookDetailFragment();
         fragment.setArguments(args);
 
         int id = R.id.container;
@@ -182,8 +189,9 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     public void onBackPressed() {
         if(getSupportFragmentManager().getBackStackEntryCount()<2){
             finish();
+        }else {
+            super.onBackPressed();
         }
-        super.onBackPressed();
     }
 
 

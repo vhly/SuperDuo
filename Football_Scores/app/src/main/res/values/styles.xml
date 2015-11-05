@@ -15,6 +15,11 @@
 
     </style>
 
+    <style name="AppTheme.Mirror.LayoutDirection.RootLayout">
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+    </style>
+
     <style name="AppTheme.Mirror.LayoutDirection.AlignParentLeft">
         <item name="android:layout_alignParentLeft">true</item>
     </style>
@@ -30,6 +35,8 @@
 
     <style name="AppTheme.Mirror.ShareButton">
         <item name="android:drawableLeft">@android:drawable/ic_menu_share</item>
+        <item name="android:paddingLeft">120dp</item>
+        <item name="android:paddingRight">120dp</item>
     </style>
 
 

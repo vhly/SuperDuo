@@ -19,7 +19,7 @@ import it.jaschke.alexandria.services.BookService;
 import it.jaschke.alexandria.services.DownloadImage;
 
 
-public class BookDetail extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
+public class BookDetailFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     public static final String EAN_KEY = "EAN";
     private final int LOADER_ID = 10;
@@ -28,7 +28,7 @@ public class BookDetail extends Fragment implements LoaderManager.LoaderCallback
     private String bookTitle;
     private ShareActionProvider shareActionProvider;
 
-    public BookDetail() {
+    public BookDetailFragment() {
     }
 
     @Override
@@ -43,8 +43,8 @@ public class BookDetail extends Fragment implements LoaderManager.LoaderCallback
 
         Bundle arguments = getArguments();
         if (arguments != null) {
-            ean = arguments.getString(BookDetail.EAN_KEY);
-            getLoaderManager().restartLoader(LOADER_ID, null, this);
+            ean = arguments.getString(BookDetailFragment.EAN_KEY);
+            restartLoader();
         }
 
         rootView = inflater.inflate(R.layout.fragment_full_book, container, false);
@@ -148,6 +148,20 @@ public class BookDetail extends Fragment implements LoaderManager.LoaderCallback
         super.onDestroyView();
         if (MainActivity.IS_TABLET && rootView.findViewById(R.id.right_container) == null) {
             getActivity().getSupportFragmentManager().popBackStack();
+        }
+    }
+
+    private void restartLoader() {
+        try {
+            LoaderManager loaderManager = getLoaderManager();
+            Loader<Object> loader = loaderManager.getLoader(LOADER_ID);
+            if (loader != null) {
+                loaderManager.restartLoader(LOADER_ID, null, this);
+            } else {
+                loaderManager.initLoader(LOADER_ID, null, this);
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
         }
     }
 }

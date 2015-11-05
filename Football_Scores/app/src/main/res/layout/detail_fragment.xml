@@ -53,8 +53,6 @@
                 android:gravity="center"
                 android:text="@string/share_text"
                 android:id="@+id/share_button"
-                android:paddingLeft="120dp"
-                android:paddingRight="120dp"
                 android:contentDescription="Share"
                 />
     </FrameLayout>

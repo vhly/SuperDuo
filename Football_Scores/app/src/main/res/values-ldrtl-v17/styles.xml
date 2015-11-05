@@ -12,6 +12,11 @@
         <item name="android:layoutDirection">rtl</item>
     </style>
 
+    <style name="AppTheme.Mirror.LayoutDirection.RootLayout">
+        <item name="android:paddingStart">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingEnd">@dimen/activity_horizontal_margin</item>
+    </style>
+
     <style name="AppTheme.Mirror.LayoutDirection.AlignParentLeft">
         <item name="android:layout_alignParentStart">true</item>
     </style>
@@ -27,6 +32,8 @@
 
     <style name="AppTheme.Mirror.ShareButton" parent="AppTheme.Mirror.TextDirection">
         <item name="android:drawableStart">@android:drawable/ic_menu_share</item>
+        <item name="android:paddingStart">120dp</item>
+        <item name="android:paddingEnd">120dp</item>
     </style>
 
     <!-- AppWidget Style -->
