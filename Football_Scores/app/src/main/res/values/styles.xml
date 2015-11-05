@@ -15,6 +15,15 @@
 
     </style>
 
+    <style name="AppTheme.Mirror.LayoutDirection.AlignParentLeft">
+        <item name="android:layout_alignParentLeft">true</item>
+    </style>
+
+
+    <style name="AppTheme.Mirror.LayoutDirection.AlignParentRight">
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+
     <style name="AppTheme.Mirror.TextDirection">
 
     </style>
@@ -22,5 +31,25 @@
     <style name="AppTheme.Mirror.ShareButton">
         <item name="android:drawableLeft">@android:drawable/ic_menu_share</item>
     </style>
+
+
+    <!-- AppWidget Style -->
+
+    <style name="AppTheme.AppWidget">
+
+    </style>
+
+    <style name="AppTheme.AppWidget.Text">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="AppTheme.AppWidget.Text.LeftText">
+        <item name="android:layout_alignParentLeft">true</item>
+    </style>
+
+    <style name="AppTheme.AppWidget.Text.RightText">
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+
 
 </resources>
