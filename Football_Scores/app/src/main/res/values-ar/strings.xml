@@ -32,4 +32,5 @@
         During the off season, fake data will be added to the app.
     </string>
     <string name="match_no_start"> لا يبدأ </string>
+    <string name="loading">Loading</string>
 </resources>
